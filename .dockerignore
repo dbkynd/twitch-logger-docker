@@ -1,0 +1,11 @@
+.git
+.idea
+node_modules
+.env
+Dockerfile
+LICENSE
+**/*README.md
+.prettierrc
+.eslintrc.js
+.editorconfig
+.dockerignore
