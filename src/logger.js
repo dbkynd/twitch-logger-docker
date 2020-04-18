@@ -1,8 +1,14 @@
 const winston = require('winston')
 require('winston-daily-rotate-file')
+const utils = require('./utilities')
 
 const myFormat = winston.format.printf((info) => {
-  return `${info.timestamp} ${info.message}`
+  const message = `[${info.timestamp}] ${info.message}`
+  // Log to console in development to check formatting
+  if (process.env.NODE_ENV === 'development') {
+    console.log(message)
+  }
+  return message
 })
 
 const options = {
@@ -14,12 +20,20 @@ const options = {
   utc: true,
 }
 
-if (process.env.UTC === false) options.utc = false
+// Set utc filename formatting to false if UTC ENV is set to false
+// Does NOT effect the timestamps of the message, only the rotating file format
+if (process.env.UTC === 'false') options.utc = false
+
+// Set zippedArchive to false if ZIP ENV is set to false
+if (process.env.ZIP === 'false') options.zippedArchive = false
 
 const transport = new winston.transports.DailyRotateFile(options)
 
 const logger = winston.createLogger({
-  format: winston.format.combine(winston.format.timestamp(), myFormat),
+  format: winston.format.combine(
+    winston.format.timestamp({ format: utils.timestamp() }),
+    myFormat
+  ),
   transports: [transport],
 })
 
