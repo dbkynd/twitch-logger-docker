@@ -5,6 +5,7 @@ A Docker container to log multiple Twitch channel's IRC messages to file.
 
 Default behavior:
 * Logs all `PRIVMSG` IRC messages
+* Each channel logs to its own folder
 * Log files are split monthly
 * Old log files are zipped with GZIP
 * Timestamps are in UTC format
