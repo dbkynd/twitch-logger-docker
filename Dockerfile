@@ -6,7 +6,7 @@ COPY . /app
 
 WORKDIR /app
 
-RUN yarn --pure-lockfile && \
+RUN yarn --pure-lockfile --production=true && \
     yarn cache clean
 
 ENTRYPOINT ["yarn", "start"]
