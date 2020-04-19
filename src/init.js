@@ -70,7 +70,7 @@ if (process.env.CHATTY_STYLE) {
   process.env.CHATTY_STYLE = 'false'
 }
 
-console.log(`Twitch Channel: '${process.env.TWITCH_CHANNELS}'`)
+console.log(`Twitch Channels: '${process.env.TWITCH_CHANNELS}'`)
 console.log(`Timezone: '${process.env.TZ}'`)
 console.log(
   `Timestamp Format String: ${
@@ -78,11 +78,11 @@ console.log(
   }`
 )
 console.log(
-  `Filename Date Pattern: '${
+  `Filename Date Pattern: ${
     process.env.DATE_PATTERN
       ? `'${process.env.DATE_PATTERN}'`
       : `'null' (Singular File)`
-  }'`
+  }`
 )
 console.log(`Logging RAW IRC: ${process.env.RAW}`)
 console.log(`Zipping Old Logs: ${process.env.ZIP}`)
