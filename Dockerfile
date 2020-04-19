@@ -38,7 +38,6 @@ RUN rm .dockerignore && \
     rm .eslintrc.js && \
     rm .gitignore && \
     rm .prettierrc && \
-    rm Dockerfile && \
     rm yarn.lock
 
 #
