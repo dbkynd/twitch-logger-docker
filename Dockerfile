@@ -9,6 +9,4 @@ WORKDIR /app
 RUN yarn --pure-lockfile && \
     yarn cache clean
 
-RUN yarn
-
 ENTRYPOINT ["yarn", "start"]
