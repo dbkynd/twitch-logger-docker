@@ -1,4 +1,6 @@
-.env
 /node_modules
+/prod_node_modules
 /logs
-.idea
+/.idea
+/.git
+*.log

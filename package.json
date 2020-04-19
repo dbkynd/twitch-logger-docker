@@ -8,13 +8,16 @@
   "private": true,
   "scripts": {
     "start": "node src/init.js",
-    "prettier": "prettier --write **/*.{js,md,*rc,json} --ignore-path .gitignore"
+    "prettier": "prettier --write **/*.{js,md,*rc,json} --ignore-path .gitignore",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "modclean": "modclean -r -n default:safe"
   },
   "dependencies": {
     "moment-timezone": "^0.5.28",
     "tmi.js": "^1.5.0",
     "winston": "^3.2.1",
-    "winston-daily-rotate-file": "^4.4.2"
+    "winston-daily-rotate-file": "^4.4.2",
+    "modclean": "^3.0.0-beta.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

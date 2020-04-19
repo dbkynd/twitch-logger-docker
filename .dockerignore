@@ -1,14 +1,8 @@
 .git
 .idea
 node_modules
-.env
 LICENSE
-**/*README.md
-.prettierrc
-.eslintrc.js
 .editorconfig
-.dockerignore
-.gitignore
-tests
 logs
-README.md
+*.log
+*.md
