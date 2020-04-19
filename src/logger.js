@@ -13,6 +13,8 @@ const myFormat = winston.format.printf((info) => {
 
 const logger = []
 
+const myLevels = { twitch: 0 }
+
 process.env.TWITCH_CHANNELS.split(',').forEach((chan) => {
   // If a DATE_PATTERN is used do file rotation
   if (process.env.DATE_PATTERN) {
@@ -35,6 +37,8 @@ process.env.TWITCH_CHANNELS.split(',').forEach((chan) => {
     const rotateTransport = new winston.transports.DailyRotateFile(options)
 
     logger[chan] = winston.createLogger({
+      levels: myLevels,
+      level: 'twitch',
       format: winston.format.combine(
         winston.format.timestamp({ format: utils.timestamp() }),
         myFormat
@@ -44,6 +48,8 @@ process.env.TWITCH_CHANNELS.split(',').forEach((chan) => {
   } else {
     // Otherwise log all messages to a singular file
     logger[chan] = winston.createLogger({
+      levels: myLevels,
+      level: 'twitch',
       format: winston.format.combine(
         winston.format.timestamp({ format: utils.timestamp() }),
         myFormat
