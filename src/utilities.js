@@ -1,20 +1,8 @@
-const moment = require('moment')
+const moment = require('moment-timezone')
 
 module.exports = {
   timestamp() {
-    if (process.env.FORMAT) {
-      if (process.env.UTC === 'false') {
-        return moment().format(process.env.FORMAT)
-      } else {
-        return moment.utc().format(process.env.FORMAT)
-      }
-    } else {
-      if (process.env.UTC === 'false') {
-        return moment().format('YYYY-MM-DDThh:mm:ss.SSS')
-      } else {
-        return new Date().toISOString()
-      }
-    }
+    return moment.tz(process.env.TZ).format(process.env.TS_FORMAT)
   },
 
   prefixes(userstate) {
