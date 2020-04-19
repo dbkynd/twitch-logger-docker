@@ -7,7 +7,7 @@ const client = new tmi.Client({
     secure: true,
     reconnect: true,
   },
-  channels: [process.env.TWITCH_CHANNEL],
+  channels: [process.env.TWITCH_CHANNELS],
 })
 
 // Connection events
@@ -27,9 +27,9 @@ client.on('reconnect', () => {
 client.on('raw_message', (messageCloned, message) => {
   // Don't log raw messages if RAW is set to false
   if (process.env.RAW === 'false') return
-  // Don't log PONG messages
-  if (message.raw.startsWith('PONG')) return
-  logger.info(message.raw)
+  // Only log PRIVMSG messages
+  if (message.command !== 'PRIVMSG') return
+  logger[message.params[0]].info(message.raw)
 })
 
 // Chat message event
@@ -65,7 +65,7 @@ client.on('message', (channel, tags, message, self) => {
       // Do nothing
       break
   }
-  logger.info(msg)
+  logger[channel].info(msg)
 })
 
 client.connect()

@@ -1,11 +1,16 @@
 console.log('Starting Twitch Logger...')
 
 // Ensure we have a Twitch Channel to connect to
-if (!process.env.TWITCH_CHANNEL) {
-  console.error('Missing "TWITCH_CHANNEL" environment variable. Exiting...')
+if (!process.env.TWITCH_CHANNELS) {
+  console.error('Missing "TWITCH_CHANNELS" environment variable. Exiting...')
   process.exit()
 }
-process.env.TWITCH_CHANNEL = process.env.TWITCH_CHANNEL.toLowerCase()
+// Ensure channels are lowercase and prepended with a '#'
+const channels = process.env.TWITCH_CHANNELS.split(',')
+for (let i = 0; i < channels.length; i++) {
+  channels[i] = `#${channels[i].toLowerCase().trim().replace('#', '')}`
+}
+process.env.TWITCH_CHANNELS = channels
 
 // Set default TZ as UTC if not otherwise set
 if (!process.env.TZ) {
@@ -65,7 +70,7 @@ if (process.env.CHATTY_STYLE) {
   process.env.CHATTY_STYLE = 'false'
 }
 
-console.log(`Twitch Channel: '${process.env.TWITCH_CHANNEL}'`)
+console.log(`Twitch Channel: '${process.env.TWITCH_CHANNELS}'`)
 console.log(`Timezone: '${process.env.TZ}'`)
 console.log(
   `Timestamp Format String: ${

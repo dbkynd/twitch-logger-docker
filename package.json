@@ -1,7 +1,7 @@
 {
   "name": "twitch-logger-docker",
   "version": "1.0.0",
-  "description": "A Docker container to log a Twitch chat channel's IRC messages.",
+  "description": "A Docker container to log multiple Twitch channel's IRC messages to file.",
   "repository": "https://github.com/dbkynd/twitch-logger-docker.git",
   "author": "DBKynd <db@dbkynd.com>",
   "license": "MIT",
