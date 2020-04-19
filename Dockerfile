@@ -11,7 +11,7 @@ COPY . .
 #
 # ---- Dependencies ----
 FROM base AS dependencies
-# install yarn pakage manager
+# install yarn package manager
 RUN apk add yarn
 # install only the production node_modules
 RUN yarn --pure-lockfile --production=true
