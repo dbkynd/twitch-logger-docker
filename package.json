@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start": "node src/init.js",
-    "test": "jest"
+    "prettier": "prettier --write **/*.{js,md,*rc,json} --ignore-path .gitignore"
   },
   "dependencies": {
     "moment-timezone": "^0.5.28",
