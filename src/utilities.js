@@ -2,7 +2,8 @@ const moment = require('moment-timezone')
 
 module.exports = {
   timestamp() {
-    return moment.tz(process.env.TZ).format(process.env.TS_FORMAT)
+    const time = moment.tz(process.env.TZ).format(process.env.TS_FORMAT)
+    return `[${time}]`
   },
 
   prefixes(userstate) {

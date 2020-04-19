@@ -3,12 +3,7 @@ require('winston-daily-rotate-file')
 const utils = require('./utilities')
 
 const myFormat = winston.format.printf((info) => {
-  const message = `[${info.timestamp}] ${info.message}`
-  // Log to console in development
-  if (process.env.NODE_ENV === 'development') {
-    console.log(message)
-  }
-  return message
+  return `${info.timestamp} ${info.message}`
 })
 
 const logger = []

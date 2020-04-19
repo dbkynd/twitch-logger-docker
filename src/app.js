@@ -12,15 +12,15 @@ const client = new tmi.Client({
 
 // Connection events
 client.on('connected', (address, port) => {
-  console.log(`[${utils.timestamp()}]`, 'Connected to Twitch')
+  console.log(utils.timestamp(), 'Connected to Twitch')
 })
 
 client.on('disconnected', (reason) => {
-  console.log(`[${utils.timestamp()}]`, 'Disconnected from Twitch')
+  console.log(utils.timestamp(), 'Disconnected from Twitch')
 })
 
 client.on('reconnect', () => {
-  console.log(`[${utils.timestamp()}]`, 'Attempting to reconnect to Twitch')
+  console.log(utils.timestamp(), 'Attempting to reconnect to Twitch')
 })
 
 // Raw message event
