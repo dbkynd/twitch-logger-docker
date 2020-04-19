@@ -3,7 +3,12 @@ const moment = require('moment-timezone')
 module.exports = {
   timestamp() {
     const time = moment.tz(process.env.TZ).format(process.env.TS_FORMAT)
-    return `[${time}]`
+    // Don't use brackets if using logstash formatting
+    if (process.env.LOGSTASH === 'true') {
+      return time
+    } else {
+      return `[${time}]`
+    }
   },
 
   prefixes(userstate) {

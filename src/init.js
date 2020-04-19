@@ -70,6 +70,19 @@ if (process.env.CHATTY_STYLE) {
   process.env.CHATTY_STYLE = 'false'
 }
 
+// Ensure LOGSTASH is true/false
+if (process.env.LOGSTASH) {
+  if (process.env.LOGSTASH !== 'true' && process.env.LOGSTASH !== 'false') {
+    console.error(
+      '"LOGSTASH" environment variable should be a Boolean value. Exiting...'
+    )
+    process.exit()
+  }
+} else {
+  // Set default
+  process.env.LOGSTASH = 'false'
+}
+
 console.log(`Twitch Channels: '${process.env.TWITCH_CHANNELS}'`)
 console.log(`Timezone: '${process.env.TZ}'`)
 console.log(
@@ -87,6 +100,7 @@ console.log(
 console.log(`Logging RAW IRC: ${process.env.RAW}`)
 console.log(`Zipping Old Logs: ${process.env.ZIP}`)
 console.log(`Using Chatty Styling: ${process.env.CHATTY_STYLE}`)
+console.log(`Using Logstash Formatting: ${process.env.LOGSTASH}`)
 
 if (process.env.RAW === 'true' && process.env.CHATTY_STYLE === 'true') {
   console.warn(

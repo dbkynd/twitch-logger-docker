@@ -23,7 +23,8 @@ Default behavior:
 - `TZ` (String) (Default: UTC) Set to use a specific timezone found at https://www.php.net/manual/en/timezones.php
 - `TS_FORMAT` (String) Set to format the timestamp to your liking. ie: `hh:mm:ss` https://momentjs.com/docs/#/displaying/format/
 - `DATE_PATTERN` (String) Set to change how often the log files are rotated. Defaults to monthly. ie: `YYYY-MM` https://github.com/winstonjs/winston-daily-rotate-file (Options section)
-- `CHATTY_STYLE` (Boolean) (Default: false) Set to true (Requires RAW to be false) to mimic the Chatty formatting of prefixing the username with symbols representing the user level. https://chatty.github.io/help/help.html (User Status Symbols section)
+- `CHATTY_STYLE` (Boolean) (Default: false) Set to true (requires RAW to be false) to mimic the Chatty formatting of prefixing the username with symbols representing the user level. https://chatty.github.io/help/help.html (User Status Symbols section)
+- `LOGSTASH` (Boolean) (Default: false) Set to true to use logstash formatting for things like Elasticsearch
 
 Container Path to the log directory is `/app/logs`
 

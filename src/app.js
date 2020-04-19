@@ -29,7 +29,12 @@ client.on('raw_message', (messageCloned, message) => {
   if (process.env.RAW === 'false') return
   // Only log PRIVMSG messages
   if (message.command !== 'PRIVMSG') return
-  logger[message.params[0]].twitch(message.raw)
+
+  if (process.env.LOGSTASH === 'true') {
+    logger[message.params[0]].twitch({ ...message, message: message.raw })
+  } else {
+    logger[message.params[0]].twitch(message.raw)
+  }
 })
 
 // Chat message event
@@ -67,7 +72,12 @@ client.on('message', (channel, tags, message, self) => {
   }
   // Don't log if msg was never set (whisper or default cases)
   if (!msg) return
-  logger[channel].twitch(msg)
+
+  if (process.env.LOGSTASH === 'true') {
+    logger[channel].twitch({ ...tags, message: msg })
+  } else {
+    logger[channel].twitch(msg)
+  }
 })
 
 client.connect()

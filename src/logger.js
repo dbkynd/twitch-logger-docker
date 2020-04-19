@@ -2,9 +2,19 @@ const winston = require('winston')
 require('winston-daily-rotate-file')
 const utils = require('./utilities')
 
-const myFormat = winston.format.printf((info) => {
-  return `${info.timestamp} ${info.message}`
-})
+const { format } = winston
+
+const myFormat = format.combine(
+  format.timestamp({ format: utils.timestamp }),
+  format.printf((info) => {
+    return `${info.timestamp} ${info.message}`
+  })
+)
+
+const logstashFormat = format.combine(
+  format.timestamp({ format: utils.timestamp }),
+  format.logstash()
+)
 
 const logger = []
 
@@ -34,10 +44,7 @@ process.env.TWITCH_CHANNELS.split(',').forEach((chan) => {
     logger[chan] = winston.createLogger({
       levels: myLevels,
       level: 'twitch',
-      format: winston.format.combine(
-        winston.format.timestamp({ format: utils.timestamp }),
-        myFormat
-      ),
+      format: process.env.LOGSTASH === 'true' ? logstashFormat : myFormat,
       transports: [rotateTransport],
     })
   } else {
@@ -45,10 +52,7 @@ process.env.TWITCH_CHANNELS.split(',').forEach((chan) => {
     logger[chan] = winston.createLogger({
       levels: myLevels,
       level: 'twitch',
-      format: winston.format.combine(
-        winston.format.timestamp({ format: utils.timestamp }),
-        myFormat
-      ),
+      format: process.env.LOGSTASH === 'true' ? logstashFormat : myFormat,
       transports: [
         new winston.transports.File({
           filename: `./logs/${chan}/${chan}.log`,
