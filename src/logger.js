@@ -40,7 +40,7 @@ process.env.TWITCH_CHANNELS.split(',').forEach((chan) => {
       levels: myLevels,
       level: 'twitch',
       format: winston.format.combine(
-        winston.format.timestamp({ format: utils.timestamp() }),
+        winston.format.timestamp({ format: utils.timestamp }),
         myFormat
       ),
       transports: [rotateTransport],
@@ -51,7 +51,7 @@ process.env.TWITCH_CHANNELS.split(',').forEach((chan) => {
       levels: myLevels,
       level: 'twitch',
       format: winston.format.combine(
-        winston.format.timestamp({ format: utils.timestamp() }),
+        winston.format.timestamp({ format: utils.timestamp }),
         myFormat
       ),
       transports: [
