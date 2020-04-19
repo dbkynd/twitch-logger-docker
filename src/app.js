@@ -65,6 +65,8 @@ client.on('message', (channel, tags, message, self) => {
       // Do nothing
       break
   }
+  // Don't log if msg was never set (whisper or default cases)
+  if (!msg) return
   logger[channel].info(msg)
 })
 
