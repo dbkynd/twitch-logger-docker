@@ -3,12 +3,11 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: [
-    'prettier',
-    'plugin:prettier/recommended',
-  ],
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
+  extends: ['prettier', 'plugin:prettier/recommended'],
   plugins: ['prettier'],
   // add your custom rules here
-  rules: {
-  },
+  rules: {},
 }
