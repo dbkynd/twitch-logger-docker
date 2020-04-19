@@ -12,7 +12,7 @@ Default behavior:
 
 **Required ENV variables:**
 
-* `TWITCH_CHANNELS` (String) A comma delimited string of channels specifying which Twitch channels you want to log
+* `TWITCH_CHANNELS` (String) A comma delimited string of channel names specifying which Twitch channels you want to log
 
 **Optional ENV variables:**
 
