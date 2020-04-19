@@ -11,7 +11,7 @@ const myFormat = winston.format.printf((info) => {
   return message
 })
 
-let logger = []
+const logger = []
 
 process.env.TWITCH_CHANNELS.split(',').forEach((chan) => {
   // If a DATE_PATTERN is used do file rotation
@@ -31,6 +31,7 @@ process.env.TWITCH_CHANNELS.split(',').forEach((chan) => {
 
     // Set zippedArchive to false if ZIP ENV is set to false
     if (process.env.ZIP === 'false') options.zippedArchive = false
+
     const rotateTransport = new winston.transports.DailyRotateFile(options)
 
     logger[chan] = winston.createLogger({
