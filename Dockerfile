@@ -1,6 +1,6 @@
-FROM node:12.13.1
+FROM node:12.16.2-alpine
 
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+RUN apk add --no-cache yarn
 
 COPY . /app
 
