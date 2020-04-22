@@ -12,23 +12,23 @@ COPY . .
 # ---- Dependencies ----
 FROM base AS dependencies
 # install yarn package manager
-RUN apk add yarn
+RUN apk add npm
 # install only the production node_modules
-RUN yarn --pure-lockfile --production=true
+RUN npm install --production
 # prune unnecessary files from node_modules
-RUN yarn modclean
+RUN npm run modclean
 # remove modclean folder from node_modules
 RUN rm -R node_modules/modclean
 # copy production node_modules aside
 RUN cp -R node_modules prod_node_modules
 # install ALL node_modules, including 'devDependencies'
-RUN yarn --pure-lockfile --production=false
+RUN npm install
 
 #
 # ---- Test ----
 FROM dependencies AS test
 # prettify and lint
-RUN  yarn prettier && yarn lint
+RUN  npm run prettier && npm run lint
 
 #
 # ---- Cleanup ----
@@ -38,7 +38,7 @@ RUN rm .dockerignore && \
     rm .eslintrc.js && \
     rm .gitignore && \
     rm .prettierrc && \
-    rm yarn.lock
+    rm package-lock.json
 
 #
 # ---- Release ----
