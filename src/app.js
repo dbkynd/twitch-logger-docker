@@ -81,3 +81,8 @@ client.on('message', (channel, tags, message, self) => {
 })
 
 client.connect()
+
+process.on('SIGTERM', () => {
+  client.disconnect()
+  process.exit()
+})
