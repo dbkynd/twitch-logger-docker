@@ -11,7 +11,7 @@ COPY . .
 #
 # ---- Dependencies ----
 FROM base AS dependencies
-# install yarn package manager
+# install node package manager
 RUN apk add npm
 # install only the production node_modules
 RUN npm install --production
