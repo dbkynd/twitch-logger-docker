@@ -12,6 +12,7 @@ module.exports = {
   },
 
   prefixes(userstate) {
+    if (!userstate.badges) return ''
     const staff = userstate.badges.staff || userstate.badges.admin ? '&' : ''
     const globalMod = userstate.badges.global_mod ? '*' : ''
     const broadcaster = userstate.badges.broadcaster ? '~' : ''
